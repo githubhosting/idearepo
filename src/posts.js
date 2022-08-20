@@ -29,6 +29,8 @@ import {
   BooleanField,
   BooleanInput,
 } from "react-admin";
+import { useMediaQuery } from "@mui/material";
+import { SimpleList } from "react-admin";
 import { RichTextInput } from "ra-input-rich-text";
 import {
   FirebaseReferenceField,
@@ -54,22 +56,38 @@ import {
 //   </Filter>
 // );
 
-export const PostList = (props) => (
-  <List
-    {...props}
-    // filters={<ReferenceFilter />}
-    // filter={{ updatedby: "test@example.com" }}
-  >
-    <Datagrid>
-      <TextField source="name" />
-      <TextField source="title" />
-      <ShowButton label="Show" />
-      <EditButton label="Edit" />
-      <DeleteWithConfirmButton label="Delete" redirect={false} />
-    </Datagrid>
-  </List>
-);
-
+export const PostList = (props) => {
+  const isSmall = useMediaQuery((theme) => theme.breakpoints.down("sm"));
+  // const record = useRecordContext();
+  return (
+    <List
+      {...props}
+      // filters={<ReferenceFilter />}
+      // filter={{ updatedby: "test@example.com" }}
+    >
+      {isSmall ? (
+        <SimpleList
+          sx={{
+            borderRadius: "0.5rem",
+            boxShadow: "0 0 0.6rem rgba(0,0,0,0.1)",
+          }}
+          linkType="show"
+          primaryText={(record) => <b>{record.name}</b>}
+          secondaryText={(record) => `Email: ${record.updatedby}`}
+          // leftAvatar={(record) => (record.avatar ? record.avatar : null)}
+        />
+      ) : (
+        <Datagrid>
+          <TextField source="name" />
+          <TextField source="title" />
+          <ShowButton label="Show" />
+          <EditButton label="Edit" />
+          <DeleteWithConfirmButton label="Delete" redirect={false} />
+        </Datagrid>
+      )}
+    </List>
+  );
+};
 const ConditionalEmailField = ({}) =>
   record && record.hasEmail ? (
     <EmailField source="email" record={record} {...rest} />
@@ -77,19 +95,19 @@ const ConditionalEmailField = ({}) =>
 export const PostShow = (props) => (
   <Show {...props}>
     <SimpleShowLayout>
-      <TextField source="id" />
+      {/* <TextField source="id" /> */}
       <TextField source="name" />
       <TextField source="title" />
       <RichTextField source="body" />
       <EmailField source="updatedby" />
-      <TextField source="createdate" />
-      <TextField source="lastupdate" />
+      <DateField source="createdate" />
+      <DateField source="lastupdate" />
     </SimpleShowLayout>
   </Show>
 );
 
 export const PostCreate = (props) => (
-  <Create {...props}>
+  <Create redirect="show" {...props}>
     <SimpleForm>
       <TextInput label="Name" source="name" />
       <TextInput label="Idea Title" source="title" />
@@ -104,7 +122,6 @@ export const PostEdit = (props) => (
     <SimpleForm>
       <TextInput disabled source="id" />
       <TextInput disabled source="name" />
-      <DateField source="createdate" />
       <DateField source="lastupdate" />
       <TextInput source="title" />
       <RichTextInput source="body" />

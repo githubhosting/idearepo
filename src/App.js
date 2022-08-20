@@ -1,7 +1,12 @@
 import * as React from "react";
 import { PostList, PostShow, PostCreate, PostEdit } from "./posts";
 import { UserList, UserShow, UserCreate, UserEdit } from "./users";
-import { Admin, Resource } from "react-admin";
+import { Admin, CustomRoutes, Resource } from "react-admin";
+import { Route } from "react-router-dom";
+import MyPage from "./MyPage";
+import Dashboard from "./Dashboard";
+import MyLayout from "./MyLayout";
+
 import {
   FirebaseDataProvider,
   FirebaseAuthProvider,
@@ -53,10 +58,13 @@ class App extends React.Component {
     return (
       <>
         <Admin
+          title="Idea Repository"
           loginPage={CustomLoginPage}
           // loginPage={MyLoginPage}
           dataProvider={dataProvider}
           authProvider={authProvider}
+          layout={MyLayout}
+          dashboard={Dashboard}
           // requireAuth
         >
           <Resource
@@ -82,6 +90,9 @@ class App extends React.Component {
             create={Comments.CommentCreate}
             edit={Comments.CommentEdit}
           />
+          <CustomRoutes>
+            <Route path="/mypage" element={<MyPage />} />
+          </CustomRoutes>
           {/* <CustomRoutes>
             <Route
               path="/foo"
