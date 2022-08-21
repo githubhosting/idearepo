@@ -26,17 +26,19 @@ export default () => (
         mt: 3,
         mb: 1,
         alignSelf: "center",
-        // margin: 1,
         width: "242.5px",
         height: "109px",
+        borderRadius: "0.5rem",
+        boxShadow: "0 0 0.6rem rgba(0,0,0,0.1)",
+
         borderRadius: "10px",
-        boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.25)",
+        // boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.25)",
         // backgroundColor: "rgba(0, 0, 0, 0.5)",
       }}
-      // height="194"
       // image="https://www.msrit.ml/img/msritlogo.png"
       // image="http://d2e9h3gjmozu47.cloudfront.net/brand.png"
-      image="http://exam.msrit.edu/components/com_examresult/assets/images/logo.png"
+      // image="http://exam.msrit.edu/components/com_examresult/assets/images/logo.png"
+      image="https://github.com/githubhosting/idearepo/blob/main/src/img/light.png"
       alt="Ramaiah Institute of Technology Logo"
     />
     <Card
@@ -58,7 +60,6 @@ export default () => (
       }}
     >
       <CardContent>
-        <image src="https://source.unsplash.com/random/400x200" />
         <Typography
           sx={{ fontWeight: 500, fontSize: "1.5rem" }}
           color="text.primary"
