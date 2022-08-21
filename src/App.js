@@ -90,6 +90,14 @@ class App extends React.Component {
             create={Comments.CommentCreate}
             edit={Comments.CommentEdit}
           />
+          <Resource
+            name="Blogs"
+            list={Posts.BlogList}
+            show={Posts.BlogShow}
+            create={Posts.BlogCreate}
+            edit={Posts.BlogEdit}
+          />
+
           <CustomRoutes>
             <Route path="/mypage" element={<MyPage />} />
           </CustomRoutes>

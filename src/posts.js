@@ -31,7 +31,9 @@ import {
 } from "react-admin";
 import { useMediaQuery } from "@mui/material";
 import { SimpleList } from "react-admin";
-import { RichTextInput } from "ra-input-rich-text";
+import { RichTextInput, RichTextInputToolbar } from "ra-input-rich-text";
+// import { RichTextInput, RichTextInputToolbar } from "ra-richtext-tiptap";
+
 import {
   FirebaseReferenceField,
   FirebaseReferenceInput,
@@ -77,7 +79,7 @@ export const PostList = (props) => {
           // leftAvatar={(record) => (record.avatar ? record.avatar : null)}
         />
       ) : (
-        <Datagrid>
+        <Datagrid rowClick="show">
           <TextField source="name" />
           <TextField source="title" />
           <ShowButton label="Show" />
@@ -125,6 +127,49 @@ export const PostEdit = (props) => (
       <DateField source="lastupdate" />
       <TextInput source="title" />
       <RichTextInput source="body" />
+    </SimpleForm>
+  </Edit>
+);
+
+export const BlogList = (props) => (
+  <List {...props}>
+    <Datagrid rowClick="show" bulkActionButtons={false}>
+      <TextField source="Title" />
+    </Datagrid>
+  </List>
+);
+
+export const BlogShow = (props) => (
+  <Show {...props}>
+    <SimpleShowLayout>
+      {/* <TextField source="name" /> */}
+      <TextField source="Title" />
+      <RichTextField source="Description" />
+      <DateField source="createdate" />
+    </SimpleShowLayout>
+  </Show>
+);
+
+export const BlogCreate = (props) => (
+  <Create redirect="show" {...props}>
+    <SimpleForm>
+      <TextInput source="Title" />
+      <RichTextInput
+        source="Description"
+        toolbar={<RichTextInputToolbar size="large" />}
+      />
+    </SimpleForm>
+  </Create>
+);
+
+export const BlogEdit = (props) => (
+  <Edit {...props}>
+    <SimpleForm>
+      <TextInput source="Title" />
+      <RichTextInput
+        source="Description"
+        toolbar={<RichTextInputToolbar size="large" />}
+      />
     </SimpleForm>
   </Edit>
 );

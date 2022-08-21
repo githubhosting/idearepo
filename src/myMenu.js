@@ -5,7 +5,7 @@ import ChatBubbleIcon from "@mui/icons-material/ChatBubble";
 import PeopleIcon from "@mui/icons-material/People";
 import LabelIcon from "@mui/icons-material/Label";
 import CustomerIcon from "@material-ui/icons/People";
-import BlogIcon from "@material-ui/icons/Book";
+import BlogIcon from "@material-ui/icons/Edit";
 import MenuIcon from "@material-ui/icons/Menu";
 import UserIcon from "@material-ui/icons/Person";
 import ManagerIcon from "@material-ui/icons/SupervisorAccount";
@@ -27,6 +27,7 @@ export const MyMenu = (props) => (
       primaryText="Comments"
       leftIcon={<ChatBubbleIcon />}
     />
+    <MenuItemLink to="/blogs" primaryText="Blogs" leftIcon={<BlogIcon />} />
   </Menu>
 );
 
