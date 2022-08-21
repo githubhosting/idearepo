@@ -20,14 +20,16 @@ import PostIcon from "@material-ui/icons/Book";
 export const MyMenu = (props) => (
   <Menu {...props}>
     <DashboardMenuItem />
-    <MenuItemLink to="/Users" primaryText="Users" leftIcon={<UserIcon />} />
+    {/* <MenuItemLink to="/Users" primaryText="Users" leftIcon={<UserIcon />} /> */}
     <MenuItemLink to="/posts" primaryText="Posts" leftIcon={<PostIcon />} />
     <MenuItemLink
       to="/comments"
       primaryText="Comments"
       leftIcon={<ChatBubbleIcon />}
     />
-    <MenuItemLink to="/blogs" primaryText="Blogs" leftIcon={<BlogIcon />} />
+    {/* <MenuItemLink to="/blogs" primaryText="Blogs" leftIcon={<BlogIcon />} /> */}
+    <MenuItemLink to="/mypage" primaryText="Blogs" leftIcon={<BlogIcon />} />
+    {/* <MenuItemLink to="/bookslist" primaryText="Books List" leftIcon={<MenuBook />} /> */}
   </Menu>
 );
 

@@ -24,15 +24,9 @@ const UserFilter = (props) => (
 );
 
 export const UserList = (props) => (
-  <List {...props} filters={<UserFilter />}>
-    <Datagrid>
+  <List exporter={false} {...props} filters={<UserFilter />}>
+    <Datagrid bulkActionButtons={false}>
       <TextField source="name" />
-      <TextField source="age" />
-      <TextField source="createdate" />
-      <TextField source="lastupdate" />
-      <ShowButton label="" />
-      <EditButton label="" />
-      <DeleteButton label="" redirect={false}/>
     </Datagrid>
   </List>
 );
@@ -48,7 +42,7 @@ export const UserShow = (props) => (
 );
 
 export const UserCreate = (props) => (
-  <Create {...props} >
+  <Create {...props}>
     <SimpleForm>
       <TextInput source="id" />
       <TextInput source="name" />

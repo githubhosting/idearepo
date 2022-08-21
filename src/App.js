@@ -97,6 +97,7 @@ class App extends React.Component {
             create={Posts.BlogCreate}
             edit={Posts.BlogEdit}
           />
+          <Resource name="cinemas" list={Posts.BookList} />
 
           <CustomRoutes>
             <Route path="/mypage" element={<MyPage />} />
