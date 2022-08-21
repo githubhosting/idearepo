@@ -88,10 +88,10 @@ export const PostList = (props) => {
     </List>
   );
 };
-const ConditionalEmailField = ({}) =>
-  record && record.hasEmail ? (
-    <EmailField source="email" record={record} {...rest} />
-  ) : null;
+// const ConditionalEmailField = ({}) =>
+//   record && record.hasEmail ? (
+//     <EmailField source="email" record={record} {...rest} />
+//   ) : null;
 export const PostShow = (props) => (
   <Show {...props}>
     <SimpleShowLayout>
