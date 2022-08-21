@@ -7,23 +7,25 @@ import { createTheme, Box, Typography } from "@mui/material";
 // import { lightTheme } from './themes';
 // import { darkTheme, lightTheme, defaultTheme1 } from './themes';
 
-// const darkTheme = createTheme({
-//   palette: {
-//     mode: 'dark',
-//     secondary: { main: '#f50057' },
-//     background: { paper: '#000000' },
-//     text: { primary: '#fff' },
-//     divider: '#424242',
-//     action: { hover: '#424242' },
-//     error: { main: '#f50057' },
-//     success: { main: '#f50057' },
-//     info: { main: '#f50057' },
-//     warning: { main: '#f50057' },
-//   },
-// });
 const darkTheme = createTheme({
-  palette: { mode: "dark" },
+  palette: {
+    mode: "dark",
+    // primary: { main: "#e3e9ed" },
+    secondary: { main: "#f50057" },
+    background: { paper: "#000000" },
+    text: { primary: "#fff" },
+    divider: "#424242",
+    action: { hover: "#424242" },
+    error: { main: "#f50057" },
+    success: { main: "#f50057" },
+    info: { main: "#f50057" },
+    warning: { main: "#f50057" },
+    imagebg: { main: "#f50057" },
+  },
 });
+// const darkTheme = createTheme({
+//   palette: { mode: "dark" },
+// });
 const MyAppBar = (props) => (
   <AppBar
     sx={{

@@ -28,12 +28,16 @@ import {
   EmailField,
   BooleanField,
   BooleanInput,
+  Form,
+  SelectArrayInput,
+  SaveButton,
 } from "react-admin";
 import { useMediaQuery } from "@mui/material";
 import { SimpleList } from "react-admin";
 import { RichTextInput, RichTextInputToolbar } from "ra-input-rich-text";
 // import { RichTextInput, RichTextInputToolbar } from "ra-richtext-tiptap";
-
+import { Typography, Box, Toolbar } from "@material-ui/core";
+import { Grid } from "@mui/material";
 import {
   FirebaseReferenceField,
   FirebaseReferenceInput,
@@ -168,7 +172,7 @@ export const BlogEdit = (props) => (
       <TextInput source="Title" />
       <RichTextInput
         source="Description"
-        toolbar={<RichTextInputToolbar size="large" />}
+        toolbar={<RichTextInputToolbar size="medium" />}
       />
     </SimpleForm>
   </Edit>

@@ -30,10 +30,9 @@ export default () => (
         height: "109px",
         borderRadius: "0.5rem",
         boxShadow: "0 0 0.6rem rgba(0,0,0,0.1)",
-
         borderRadius: "10px",
+        backgroundColor: "rgba(255, 255, 255, 1)",
         // boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.25)",
-        // backgroundColor: "rgba(0, 0, 0, 0.5)",
       }}
       // image="https://www.msrit.ml/img/msritlogo.png"
       // image="http://d2e9h3gjmozu47.cloudfront.net/brand.png"
