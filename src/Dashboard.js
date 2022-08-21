@@ -38,7 +38,7 @@ export default () => (
       // image="https://www.msrit.ml/img/msritlogo.png"
       // image="http://d2e9h3gjmozu47.cloudfront.net/brand.png"
       // image="http://exam.msrit.edu/components/com_examresult/assets/images/logo.png"
-      image="https://github.com/githubhosting/idearepo/blob/main/src/img/light.png"
+      image="https://user-images.githubusercontent.com/71520844/185781029-0afe7079-1d90-4cbc-9c8f-ce424c73a916.png"
       alt="Ramaiah Institute of Technology Logo"
     />
     <Card
