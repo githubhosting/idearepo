@@ -3,6 +3,8 @@ import * as React from "react";
 // tslint:disable-next-line:no-var-requires
 import {
   Datagrid,
+  useNotify,
+  useRedirect,
   List,
   Show,
   Create,
@@ -12,10 +14,39 @@ import {
   SimpleForm,
   TextField,
   TextInput,
+  NumberInput,
+  NumberField,
+  DateField,
+  DateInput,
+  ReferenceField,
+  ReferenceInput,
+  SelectInput,
+  SelectArrayInput,
+  ArrayInput,
+  SimpleFormIterator,
+  ImageInput,
+  ImageField,
+  FileInput,
+  FileField,
+  BooleanInput,
+  BooleanField,
+  required,
+  minLength,
+  maxLength,
+  minValue,
+  maxValue,
+  email,
+  Form,
+  SaveButton,
+  Toolbar,
   ShowButton,
   EditButton,
   DeleteButton,
+  useRecordContext,
+  DeleteWithConfirmButton,
+  SimpleList,
 } from "react-admin";
+import useMediaQuery from "@mui/material/useMediaQuery";
 
 const UserFilter = (props) => (
   <Filter {...props}>
@@ -59,6 +90,108 @@ export const UserEdit = (props) => (
       <TextInput disabled source="lastupdate" />
       <TextInput source="name" />
       <TextInput source="age" />
+    </SimpleForm>
+  </Edit>
+);
+
+export const calciList1 = (props) => (
+  <List {...props}>
+    <Datagrid>
+      {/* <TextField source="id" /> */}
+      <TextField source="name" />
+      <ShowButton />
+      <EditButton />
+      <DeleteButton />
+    </Datagrid>
+  </List>
+);
+export const calciList = (props) => {
+  const isSmall = useMediaQuery((theme) => theme.breakpoints.down("sm"));
+  const record = useRecordContext();
+  const postRowStyle = (record, index) => ({
+    backgroundColor: record.isAdmin == true ? "#90caf9" : "default",
+  });
+  return (
+    <List {...props} filters={<UserFilter />}>
+      {isSmall ? (
+        <SimpleList
+          sx={{
+            borderRadius: "0.5rem",
+            boxShadow: "0 0 0.6rem rgba(0,0,0,0.1)",
+          }}
+          linkType="show"
+          primaryText={(record) => <b>{record.name}</b>}
+          secondaryText={(record) => `Created By: ${record.createdby}`}
+          leftAvatar={(record) => (record.avatar ? record.avatar : null)}
+        />
+      ) : (
+        <Datagrid
+          sx={{
+            borderRadius: "0.5rem",
+            boxShadow: "0 0 0.6rem rgba(0,0,0,0.1)",
+          }}
+        >
+          <TextField source="name" />
+          <ShowButton sx={{ fontWeight: "bold" }} label="Show" />
+          <EditButton sx={{ fontWeight: "bold" }} label="Edit" />
+          <DeleteWithConfirmButton
+            confirmContent="You will not be able to recover this record. Are you sure?"
+            label="Delete"
+            translateOptions={(record) => record.name}
+            redirect={false}
+          />
+        </Datagrid>
+      )}
+    </List>
+  );
+};
+
+export const calciShow = (props) => (
+  <Show {...props}>
+    <SimpleShowLayout>
+      <TextField source="name" />
+      <NumberField source="Maths" />
+      <NumberField source="Chemistry" />
+      <NumberField source="CProgramming" />
+      <NumberField source="Electronics" />
+      <NumberField source="Mechanical" />
+      <NumberField label="AEC" source="AEC" />
+    </SimpleShowLayout>
+  </Show>
+);
+
+export const calciCreate = (props) => {
+  const notify = useNotify();
+  const redirect = useRedirect();
+  const onSuccess = (data) => {
+    notify(`Changes saved`);
+    redirect(`/calculator`);
+  };
+  return (
+    <Create {...props} mutationOptions={{ onSuccess }}>
+      <SimpleForm>
+        <TextInput source="name" />
+        <NumberInput max={50} source="Maths" />
+        <NumberInput max={50} source="Chemistry" />
+        <NumberInput max={50} source="CProgramming" />
+        <NumberInput max={50} source="Electronics" />
+        <NumberInput max={50} source="Mechanical" />
+        <NumberInput max={50} label="AEC" source="AEC" />
+      </SimpleForm>
+    </Create>
+  );
+};
+
+export const calciEdit = (props) => (
+  <Edit {...props}>
+    <SimpleForm>
+      <TextInput source="name" />
+      <NumberInput source="Maths" />
+      <NumberInput source="Chemistry" />
+      <NumberInput source="CProgramming" />
+      <NumberInput source="Electronics" />
+      <NumberInput source="Mechanical" />
+      <NumberInput label="AEC" source="AEC" />
     </SimpleForm>
   </Edit>
 );

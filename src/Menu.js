@@ -16,12 +16,23 @@ import Settings from "@material-ui/icons/Settings";
 import Badge from "@mui/material/Badge";
 import { MenuBook } from "@material-ui/icons";
 import PostIcon from "@material-ui/icons/Book";
-
+import CalculateIcon from "@mui/icons-material/Calculate";
+import Marks from "@material-ui/icons/Grade";
 export const MyMenu = (props) => (
   <Menu {...props}>
     <DashboardMenuItem />
     {/* <MenuItemLink to="/Users" primaryText="Users" leftIcon={<UserIcon />} /> */}
     <MenuItemLink to="/posts" primaryText="Posts" leftIcon={<PostIcon />} />
+    <MenuItemLink
+      to="/calci"
+      primaryText="Enter Marks"
+      leftIcon={<Marks />}
+    />
+    <MenuItemLink
+      to="/calculator"
+      primaryText="Calculator"
+      leftIcon={<CalculateIcon />}
+    />
     <MenuItemLink
       to="/comments"
       primaryText="Comments"

@@ -1,11 +1,14 @@
 import * as React from "react";
 import { PostList, PostShow, PostCreate, PostEdit } from "./posts";
-import { UserList, UserShow, UserCreate, UserEdit } from "./users";
+import { UserList, UserShow, UserCreate, UserEdit, calciList, calciShow, calciCreate, calciEdit } from "./users";
 import { Admin, CustomRoutes, Resource } from "react-admin";
 import { Route } from "react-router-dom";
 import MyPage from "./MyPage";
+import Calci from "./Calci";
 import Dashboard from "./Dashboard";
 import MyLayout from "./MyLayout";
+import Calculator from './Calculator';
+
 
 import {
   FirebaseDataProvider,
@@ -75,6 +78,13 @@ class App extends React.Component {
             edit={PostEdit}
           />
           <Resource
+            name="calci"
+            list={calciList}
+            show={calciShow}
+            create={calciCreate}
+            edit={calciEdit}
+          />
+          <Resource
             name="users"
             icon={UserIcon}
             list={UserList}
@@ -101,6 +111,7 @@ class App extends React.Component {
 
           <CustomRoutes>
             <Route path="/mypage" element={<MyPage />} />
+            <Route path="/calculator" element={<Calculator />} />
           </CustomRoutes>
           {/* <CustomRoutes>
             <Route
