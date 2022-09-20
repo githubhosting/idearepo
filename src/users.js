@@ -48,6 +48,7 @@ import {
 } from "react-admin";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import Calculator from "./Calculator";
+import { ListSubheader, Typography } from "@material-ui/core";
 
 const UserFilter = (props) => (
   <Filter {...props}>
@@ -171,17 +172,32 @@ export const calciCreate = (props) => {
     redirect(`/calculator`);
   };
   return (
-    <Create {...props} mutationOptions={{ onSuccess }}>
-      <SimpleForm>
-        <TextInput source="name" />
-        <NumberInput max={50} source="Maths" />
-        <NumberInput max={50} source="Chemistry" />
-        <NumberInput max={50} source="CProgramming" />
-        <NumberInput max={50} source="Electronics" />
-        <NumberInput max={50} source="Mechanical" />
-        <NumberInput max={50} label="AEC" source="AEC" />
-      </SimpleForm>
-    </Create>
+    <>
+      <ListSubheader>Enter the Average Marks of CIE for 50 and Predicted grade from the calculator</ListSubheader>
+      <Create {...props} mutationOptions={{ onSuccess }}>
+        <SimpleForm
+          sx={{
+            borderRadius: "0.5rem",
+            boxShadow: "0 0 0.6rem rgba(0,0,0,0.1)",
+            mb: "4rem",
+          }}
+        >
+          <TextInput source="name" />
+          <NumberInput source="Maths" />
+          <SelectInput source="MathsGrade" choices={choices} />
+          <NumberInput source="Chemistry" />
+          <SelectInput source="ChemistryGrade" choices={choices} />
+          <NumberInput source="CProgramming" />
+          <SelectInput source="CProgrammingGrade" choices={choices} />
+          <NumberInput source="Electronics" />
+          <SelectInput source="ElectronicsGrade" choices={choices} />
+          <NumberInput source="Mechanical" />
+          <SelectInput source="MechanicalGrade" choices={choices} />
+          <NumberInput label="AEC" source="AEC" />
+          <SelectInput source="AECGrade" label="AEC Grade" choices={choices} />
+        </SimpleForm>
+      </Create>
+    </>
   );
 };
 const choices = [

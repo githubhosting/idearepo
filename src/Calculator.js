@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Button } from "react-aria-menubutton";
+// import { Button } from "react-aria-menubutton";
 import styles from "./styles.css";
+import Button from "@mui/material/Button";
 
 import firebase from "firebase/compat/app";
 import "firebase/compat/firestore";
@@ -33,7 +34,7 @@ import { tableCellClasses } from "@mui/material/TableCell";
 import { Section, SectionHeading, Grid, Article } from "./newsFeed.style";
 import Heading from "./common/components/Heading";
 import Text from "./common/components/Text";
-import { lineHeight } from "styled-system";
+import { fontSize, lineHeight } from "styled-system";
 const firebaseConfig = {
   apiKey: "AIzaSyACyiB2f-Sl8fbez4sjwBxJwn-eGadnXcg",
   authDomain: "auth-44578.firebaseapp.com",
@@ -172,6 +173,35 @@ const Calculator = () => {
   //     });
   // }, []);
   const sc = selectedCalci;
+  // const grade =
+  //   selectedCalci.Maths === "O"
+  //     ? 10
+  //     : selectedCalci.Maths === "A+"
+  //     ? 9
+  //     : selectedCalci.Maths === "A"
+  //     ? 8
+  //     : selectedCalci.Maths === "B+"
+  //     ? 7
+  //     : 0;
+
+  // read the grade from selectedCalci.Maths and assign marks to it
+
+  // const grade1 = {
+  //   return (
+  //     {calci.map((calci) => {
+  //       {calci.Maths === "O"
+  //         ? 10
+  //         : calci.Maths === "A+"
+  //         ? 9
+  //         : calci.Maths === "A"
+  //         ? 8
+  //         : calci.Maths === "B+"
+  //         ? 7
+  //         : 0}
+  //   })}
+  // }
+  var Mcredits, Mecredits, Ecredits, Cpcredits, Ccredits, Acredits, Tcredits;
+
   return (
     <>
       <div className="App">
@@ -245,7 +275,7 @@ const Calculator = () => {
                 sx={{
                   borderRadius: 4,
                   boxShadow: 4,
-                  mt: 4,
+                  mt: 2,
                   mb: 4,
                   display: "flex",
                   flexDirection: "column",
@@ -365,6 +395,120 @@ const Calculator = () => {
                   </TableBody>
                 </Table>
               </TableContainer>
+            </div>
+            <div>
+              {
+                (Mcredits =
+                  sc.MathsGrade === "O"
+                    ? 10
+                    : sc.MathsGrade === "A+"
+                    ? 9
+                    : sc.MathsGrade === "A"
+                    ? 8
+                    : sc.MathsGrade === "B+"
+                    ? 7
+                    : 0)
+              }
+              {sc.MechanicalGrade === "O"
+                ? (Mecredits = 10)
+                : sc.MechanicalGrade === "A+"
+                ? (Mecredits = 9)
+                : sc.MechanicalGrade === "A"
+                ? (Mecredits = 8)
+                : sc.MechanicalGrade === "B+"
+                ? (Mecredits = 7)
+                : (Mecredits = 0)}
+              {sc.ElectronicsGrade === "O"
+                ? (Ecredits = 10)
+                : sc.ElectronicsGrade === "A+"
+                ? (Ecredits = 9)
+                : sc.ElectronicsGrade === "A"
+                ? (Ecredits = 8)
+                : sc.ElectronicsGrade === "B+"
+                ? (Ecredits = 7)
+                : (Ecredits = 0)}
+              {sc.CProgrammingGrade === "O"
+                ? (Cpcredits = 10)
+                : sc.CProgrammingGrade === "A+"
+                ? (Cpcredits = 9)
+                : sc.CProgrammingGrade === "A"
+                ? (Cpcredits = 8)
+                : sc.CProgrammingGrade === "B+"
+                ? (Cpcredits = 7)
+                : (Cpcredits = 0)}
+              {sc.ChemistryGrade === "O"
+                ? (Ccredits = 10)
+                : sc.ChemistryGrade === "A+"
+                ? (Ccredits = 9)
+                : sc.ChemistryGrade === "A"
+                ? (Ccredits = 8)
+                : sc.ChemistryGrade === "B+"
+                ? (Ccredits = 7)
+                : (Ccredits = 0)}
+              {sc.AECGrade === "O"
+                ? (Acredits = 10)
+                : sc.AECGrade === "A+"
+                ? (Acredits = 9)
+                : sc.AECGrade === "A"
+                ? (Acredits = 8)
+                : sc.AECGrade === "B+"
+                ? (Acredits = 7)
+                : (Acredits = 0)}
+            </div>
+            <div>
+              {
+                (Tcredits =
+                  Mcredits * 4 +
+                  Ecredits * 3 +
+                  Mecredits * 3 +
+                  Cpcredits * 3 +
+                  Ccredits * 3 +
+                  Acredits +
+                  30)
+              }
+            </div>
+            <div>
+              <Typography
+                sx={{
+                  mt: 2,
+                  mb: 2,
+                  fontSize: 20,
+                  fontWeight: "bold",
+                }}
+              >
+                <b>Your Expected CGPA is: {Tcredits / 20}</b>
+              </Typography>
+            </div>
+            <div>
+              <Typography
+                sx={{
+                  mt: 2,
+                  mb: 2,
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+                variant="h6"
+                component="div"
+              >
+                <b>Note down the expected grade and update here</b>
+              </Typography>
+              <Button
+                sx={{
+                  mt: 2,
+                  mb: 4,
+                  bgcolor: "primary.main",
+                  color: "primary.contrastText",
+                  "&:hover": {
+                    bgcolor: "primary.dark",
+                  },
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+                href="#/calci"
+              >
+                Update Grade
+              </Button>
             </div>
           </div>
         </>
