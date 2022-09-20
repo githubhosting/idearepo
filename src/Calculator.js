@@ -33,6 +33,7 @@ import { tableCellClasses } from "@mui/material/TableCell";
 import { Section, SectionHeading, Grid, Article } from "./newsFeed.style";
 import Heading from "./common/components/Heading";
 import Text from "./common/components/Text";
+import { lineHeight } from "styled-system";
 const firebaseConfig = {
   apiKey: "AIzaSyACyiB2f-Sl8fbez4sjwBxJwn-eGadnXcg",
   authDomain: "auth-44578.firebaseapp.com",
@@ -56,10 +57,68 @@ const database = firebase.firestore();
 const Calculator = () => {
   const [blogs, setBlogs] = React.useState([]);
   const [expanded, setExpanded] = React.useState(false);
+  const [selectedblog, setSelectedBlog] = React.useState();
+  const [calci, setCalci] = useState([]);
+  const [selectedCalci, setSelectedCalci] = React.useState();
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
+  // const selectCalci = (calci) => {
+  //   setSelectedCalci(calci);
+  //   database
+  //     .collection("calci")
+  //     .doc(calci.id)
+  //     .get()
+  //     .then((response) => {
+  //       const fetchedCalci = [];
+  //       fetchedCalci.push({
+  //         ...response.data(),
+  //         id: response.id,
+  //       });
+  //       setCalci(fetchedCalci);
+  //     })
+  //     .catch((error) => {
+  //       setError(error);
+  //     });
+  // };
+
+  const selectblog = (blog) => {
+    setSelectedBlog(blog);
+    database
+      .collection("calci")
+      .doc(blog.id)
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          console.log("Document data:", doc.data());
+          setSelectedBlog(doc.data());
+        } else {
+          // doc.data() will be undefined in this case
+          console.log("No such document!");
+        }
+      })
+      .catch((error) => {
+        console.log("Error getting document:", error);
+      });
   };
+  const selectCalci = (calci) => {
+    setSelectedCalci(calci);
+    database
+      .collection("calci")
+      .doc(calci.id)
+      .get()
+      .then((response) => {
+        const fetchedCalci = [];
+        fetchedCalci.push({
+          ...response.data(),
+          id: response.id,
+        });
+        setCalci(fetchedCalci);
+      })
+      .catch((error) => {
+        setError(error);
+      });
+    console.log(calci);
+  };
+
   React.useEffect(() => {
     database.collection("calci").onSnapshot((snapshot) => {
       const blogs = snapshot.docs.map((doc) => ({
@@ -75,126 +134,242 @@ const Calculator = () => {
     () => {
       console.log(blogs);
     };
+
+  React.useEffect(() => {
+    database.collection("calci").onSnapshot((snapshot) => {
+      const calci = snapshot.docs.map((doc) => ({
+        id: doc.id,
+
+        ...doc.data(),
+      }));
+      setCalci(calci);
+    }),
+      () => {
+        console.log(calci);
+      };
+  }),
+    () => {
+      console.log(calci);
+    };
+
+  // React.useEffect(() => {
+  //   database
+  //     .collection("calci")
+  //     .get()
+  //     .then((response) => {
+  //       const fetchedblogs = [];
+  //       response.docs.forEach((document) => {
+  //         const fetchedblog = {
+  //           id: document.id,
+  //           ...document.data(),
+  //         };
+  //         fetchedblogs.push(fetchedblog);
+  //       });
+  //       setBlogs(fetchedblogs);
+  //     })
+  //     .catch((error) => {
+  //       setError(error);
+  //     });
+  // }, []);
+  const sc = selectedCalci;
   return (
-    <div>
-      <h1>Calculator</h1>
-      <div>
-        <TableContainer component={Paper}>
-          <Table aria-label="collapsible table">
-            <TableHead>
-              <TableRow>
-                {/* <TableCell /> */}
-                <TableCell component="th" scope="row">
-                  <b>Subjects</b>
-                </TableCell>
-                <TableCell align="centre">For O</TableCell>
-                <TableCell align="centre">For A+</TableCell>
-                <TableCell align="centre">For A</TableCell>
-                <TableCell align="centre">For B+</TableCell>
-                {/* <TableCell align="centre">For B</TableCell> */}
-              </TableRow>
-            </TableHead>
-            <TableBody>
-              {blogs.map((post, index) => (
-                <>
-                  <div>
-                    <br></br>
-                    <b>{post.name}</b>
-                  </div>
-                  <TableRow
-                    key={post.name}
-                    sx={{
-                      bgcolor: "background.paper",
-                      boxShadow: 1,
-                      borderRadius: 2,
-                      p: 2,
-                      minWidth: 300,
-                    }}
-                  >
-                    <TableCell component="th" scope="row">
-                      <b>Maths:</b>
-                      {post.Maths}
-                      <hr class="line1"></hr>
-                      <b>Mechanical:</b>
-                      {post.Mechanical}
-                      <hr class="line1"></hr>
-                      <b>Electronics:</b>
-                      {post.Electronics}
-                      <hr class="line1"></hr>
-                      <b>C:</b>
-                      {post.CProgramming}
-                      <hr class="line1"></hr>
-                      <b>Chemistry:</b>
-                      {post.Chemistry}
-                      <hr class="line1"></hr>
-                      <b>AEC:</b>
-                      {post.AEC}
-                      <hr class="line1"></hr>
-                    </TableCell>
-                    <TableCell align="centre">
-                      {(90 - post.Maths) * 2}
-                      <hr class="line1"></hr>
-                      {(90 - post.Mechanical) * 2}
-                      <hr class="line1"></hr>
-                      {(90 - post.Electronics) * 2}
-                      <hr class="line1"></hr>
-                      {(90 - post.CProgramming) * 2}
-                      <hr class="line1"></hr>
-                      {(90 - post.Chemistry) * 2}
-                      <hr class="line1"></hr>
-                      {90 - post.AEC}
-                      <hr class="line1"></hr>
-                    </TableCell>
-                    <TableCell align="centre">
-                      {(80 - post.Maths) * 2}
-                      <hr class="line1"></hr>
-                      {(80 - post.Mechanical) * 2}
-                      <hr class="line1"></hr>
-                      {(80 - post.Electronics) * 2}
-                      <hr class="line1"></hr>
-                      {(80 - post.CProgramming) * 2}
-                      <hr class="line1"></hr>
-                      {(80 - post.Chemistry) * 2}
-                      <hr class="line1"></hr>
-                      {80 - post.AEC}
-                      <hr class="line1"></hr>
-                    </TableCell>
-                    <TableCell align="centre">
-                      {(70 - post.Maths) * 2}
-                      <hr class="line1"></hr>
-                      {(70 - post.Mechanical) * 2}
-                      <hr class="line1"></hr>
-                      {(70 - post.Electronics) * 2}
-                      <hr class="line1"></hr>
-                      {(70 - post.CProgramming) * 2}
-                      <hr class="line1"></hr>
-                      {(70 - post.Chemistry) * 2}
-                      <hr class="line1"></hr>
-                      {70 - post.AEC}
-                      <hr class="line1"></hr>
-                    </TableCell>
-                    <TableCell align="centre">
-                      {(60 - post.Maths) * 2}
-                      <hr class="line1"></hr>
-                      {(60 - post.Mechanical) * 2}
-                      <hr class="line1"></hr>
-                      {(60 - post.Electronics) * 2}
-                      <hr class="line1"></hr>
-                      {(60 - post.CProgramming) * 2}
-                      <hr class="line1"></hr>
-                      {(60 - post.Chemistry) * 2}
-                      <hr class="line1"></hr>
-                      {60 - post.AEC}
-                      <hr class="line1"></hr>
-                    </TableCell>
-                  </TableRow>
-                </>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+    <>
+      <div className="App">
+        <List
+          sx={{
+            borderRadius: 5,
+            mt: 4,
+            display: "flex",
+            flexDirection: "column",
+          }}
+          component="nav"
+          aria-labelledby="nested-list-subheader"
+          subheader={
+            <>
+              <ListSubheader
+                sx={{ fontSize: "1.5rem" }}
+                disableSticky
+                component="div"
+                id="nested-list-subheader"
+              >
+                Name
+              </ListSubheader>
+              <ListSubheader
+                sx={{
+                  fontSize: "16px",
+                  lineHeight: "28px",
+                  mb: "5px",
+                  mt: "5px",
+                }}
+                disableSticky
+                component="div"
+                id="nested-list-subheader"
+              >
+                Click on the created calculator to view the details
+              </ListSubheader>
+            </>
+          }
+        >
+          {calci.map((data) => (
+            <ListItem
+              sx={{
+                border: 0.5,
+                borderRadius: "8px",
+                borderColor: "primary",
+                mb: 2,
+                alignItems: "center",
+              }}
+              button
+              divider
+              key={data.id}
+              selected={selectedCalci === data}
+              onClick={() => selectCalci(data)}
+            >
+              <ListItemIcon>
+                <PersonIcon />
+              </ListItemIcon>
+              <ListItemText primary={data.name} />
+            </ListItem>
+          ))}
+        </List>
       </div>
-    </div>
+      {/* show only the name of selcected calci */}
+      {sc && (
+        <>
+          <div>
+            <h3>Showing Marks Table for {sc.name}</h3>
+          </div>
+          <div>
+            <div>
+              <TableContainer
+                sx={{
+                  borderRadius: 4,
+                  boxShadow: 4,
+                  mt: 4,
+                  mb: 4,
+                  display: "flex",
+                  flexDirection: "column",
+                }}
+                component={Paper}
+              >
+                <Table aria-label="collapsible table">
+                  <TableHead>
+                    <TableRow
+                      sx={{
+                        align: "center",
+                        textAlign: "center",
+                        boxShadow: 4,
+                      }}
+                    >
+                      {/* <TableCell /> */}
+                      <TableCell component="th" scope="row">
+                        <b>Subjects</b>
+                      </TableCell>
+                      <TableCell>For O</TableCell>
+                      <TableCell>For A+</TableCell>
+                      <TableCell>For A</TableCell>
+                      <TableCell>For B+</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    <>
+                      <TableRow
+                        key={selectedCalci.name}
+                        sx={{
+                          "&:last-child td, &:last-child th": { border: 0 },
+                          bgcolor: "background.paper",
+                          boxShadow: 1,
+                          borderRadius: 2,
+                          p: 2,
+                          minWidth: 300,
+                        }}
+                      >
+                        <TableCell component="th" scope="row">
+                          <b>Maths:</b>
+                          {selectedCalci.Maths}
+                          <hr class="line1"></hr>
+                          <b>Mechanical:</b>
+                          {selectedCalci.Mechanical}
+                          <hr class="line1"></hr>
+                          <b>Electronics:</b>
+                          {selectedCalci.Electronics}
+                          <hr class="line1"></hr>
+                          <b>C:</b>
+                          {selectedCalci.CProgramming}
+                          <hr class="line1"></hr>
+                          <b>Chemistry:</b>
+                          {selectedCalci.Chemistry}
+                          <hr class="line1"></hr>
+                          <b>AEC:</b>
+                          {selectedCalci.AEC}
+                          <hr class="line1"></hr>
+                        </TableCell>
+                        <TableCell align="centre">
+                          {(90 - selectedCalci.Maths) * 2}
+                          <hr class="line1"></hr>
+                          {(90 - selectedCalci.Mechanical) * 2}
+                          <hr class="line1"></hr>
+                          {(90 - selectedCalci.Electronics) * 2}
+                          <hr class="line1"></hr>
+                          {(90 - selectedCalci.CProgramming) * 2}
+                          <hr class="line1"></hr>
+                          {(90 - selectedCalci.Chemistry) * 2}
+                          <hr class="line1"></hr>
+                          {90 - selectedCalci.AEC}
+                          <hr class="line1"></hr>
+                        </TableCell>
+                        <TableCell align="centre">
+                          {(80 - selectedCalci.Maths) * 2}
+                          <hr class="line1"></hr>
+                          {(80 - selectedCalci.Mechanical) * 2}
+                          <hr class="line1"></hr>
+                          {(80 - selectedCalci.Electronics) * 2}
+                          <hr class="line1"></hr>
+                          {(80 - selectedCalci.CProgramming) * 2}
+                          <hr class="line1"></hr>
+                          {(80 - selectedCalci.Chemistry) * 2}
+                          <hr class="line1"></hr>
+                          {80 - selectedCalci.AEC}
+                          <hr class="line1"></hr>
+                        </TableCell>
+                        <TableCell align="centre">
+                          {(70 - selectedCalci.Maths) * 2}
+                          <hr class="line1"></hr>
+                          {(70 - selectedCalci.Mechanical) * 2}
+                          <hr class="line1"></hr>
+                          {(70 - selectedCalci.Electronics) * 2}
+                          <hr class="line1"></hr>
+                          {(70 - selectedCalci.CProgramming) * 2}
+                          <hr class="line1"></hr>
+                          {(70 - selectedCalci.Chemistry) * 2}
+                          <hr class="line1"></hr>
+                          {70 - selectedCalci.AEC}
+                          <hr class="line1"></hr>
+                        </TableCell>
+                        <TableCell align="centre">
+                          {(60 - selectedCalci.Maths) * 2}
+                          <hr class="line1"></hr>
+                          {(60 - selectedCalci.Mechanical) * 2}
+                          <hr class="line1"></hr>
+                          {(60 - selectedCalci.Electronics) * 2}
+                          <hr class="line1"></hr>
+                          {(60 - selectedCalci.CProgramming) * 2}
+                          <hr class="line1"></hr>
+                          {(60 - selectedCalci.Chemistry) * 2}
+                          <hr class="line1"></hr>
+                          {60 - selectedCalci.AEC}
+                          <hr class="line1"></hr>
+                        </TableCell>
+                      </TableRow>
+                    </>
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </div>
+          </div>
+        </>
+      )}
+    </>
   );
 };
 export default Calculator;

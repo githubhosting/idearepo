@@ -47,6 +47,7 @@ import {
   SimpleList,
 } from "react-admin";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import Calculator from "./Calculator";
 
 const UserFilter = (props) => (
   <Filter {...props}>
@@ -126,6 +127,8 @@ export const calciList = (props) => {
         />
       ) : (
         <Datagrid
+          bulkActionButtons={false}
+          rowClick="show"
           sx={{
             borderRadius: "0.5rem",
             boxShadow: "0 0 0.6rem rgba(0,0,0,0.1)",
@@ -181,17 +184,36 @@ export const calciCreate = (props) => {
     </Create>
   );
 };
+const choices = [
+  { id: "O", name: "O" },
+  { id: "A+", name: "A+" },
+  { id: "A", name: "A" },
+  { id: "B+", name: "B+" },
+  { id: "B", name: "B" },
+];
 
 export const calciEdit = (props) => (
   <Edit {...props}>
-    <SimpleForm>
+    <SimpleForm
+      sx={{
+        borderRadius: "0.5rem",
+        boxShadow: "0 0 0.6rem rgba(0,0,0,0.1)",
+        mb: "4rem",
+      }}
+    >
       <TextInput source="name" />
       <NumberInput source="Maths" />
+      <SelectInput source="MathsGrade" choices={choices} />
       <NumberInput source="Chemistry" />
+      <SelectInput source="ChemistryGrade" choices={choices} />
       <NumberInput source="CProgramming" />
+      <SelectInput source="CProgrammingGrade" choices={choices} />
       <NumberInput source="Electronics" />
+      <SelectInput source="ElectronicsGrade" choices={choices} />
       <NumberInput source="Mechanical" />
+      <SelectInput source="MechanicalGrade" choices={choices} />
       <NumberInput label="AEC" source="AEC" />
+      <SelectInput source="AECGrade" label="AEC Grade" choices={choices} />
     </SimpleForm>
   </Edit>
 );
