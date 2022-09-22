@@ -222,7 +222,7 @@ const Calculator = () => {
                 component="div"
                 id="nested-list-subheader"
               >
-                Name
+                Names
               </ListSubheader>
               <ListSubheader
                 sx={{
@@ -235,7 +235,7 @@ const Calculator = () => {
                 component="div"
                 id="nested-list-subheader"
               >
-                Click on the created calculator to view the details
+                Click on the created name to view the grades.
               </ListSubheader>
             </>
           }
@@ -490,7 +490,7 @@ const Calculator = () => {
                 variant="h6"
                 component="div"
               >
-                <b>Note down the expected grade and update here</b>
+                <b>Note down the expected grade and Update here</b>
               </Typography>
               <Button
                 sx={{
@@ -507,7 +507,7 @@ const Calculator = () => {
                 }}
                 href="#/calci"
               >
-                Update Grade
+                Update Grades
               </Button>
             </div>
           </div>
