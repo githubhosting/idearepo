@@ -80,7 +80,7 @@ class App extends React.Component {
           <Resource
             name="calci"
             list={calciList}
-            show={calciShow}
+            show={Users.calciShow1}
             create={calciCreate}
             edit={calciEdit}
           />

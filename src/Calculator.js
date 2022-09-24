@@ -35,6 +35,15 @@ import { Section, SectionHeading, Grid, Article } from "./newsFeed.style";
 import Heading from "./common/components/Heading";
 import Text from "./common/components/Text";
 import { fontSize, lineHeight } from "styled-system";
+import Radio from "@mui/material/Radio";
+import RadioGroup from "@mui/material/RadioGroup";
+import FormControlLabel from "@mui/material/FormControlLabel";
+import FormControl from "@mui/material/FormControl";
+import FormLabel from "@mui/material/FormLabel";
+import InputLabel from "@mui/material/InputLabel";
+import MenuItem from "@mui/material/MenuItem";
+import FormHelperText from "@mui/material/FormHelperText";
+import Select from "@mui/material/Select";
 const firebaseConfig = {
   apiKey: "AIzaSyACyiB2f-Sl8fbez4sjwBxJwn-eGadnXcg",
   authDomain: "auth-44578.firebaseapp.com",
@@ -201,7 +210,13 @@ const Calculator = () => {
   //   })}
   // }
   var Mcredits, Mecredits, Ecredits, Cpcredits, Ccredits, Acredits, Tcredits;
+  var Cplab, Clab, Mlab;
+  var Cplabcredits, Clabcredits, Mlabcredits;
+  const [age, setAge] = React.useState("");
 
+  const handleChange = (event) => {
+    setAge(event.target.value);
+  };
   return (
     <>
       <div className="App">
@@ -235,7 +250,8 @@ const Calculator = () => {
                 component="div"
                 id="nested-list-subheader"
               >
-                Click on the created name to view the grades.
+                Click on the Name that u created to view the grades according to
+                your SEE marks.
               </ListSubheader>
             </>
           }
@@ -292,13 +308,21 @@ const Calculator = () => {
                       }}
                     >
                       {/* <TableCell /> */}
-                      <TableCell component="th" scope="row">
+                      <TableCell component="th" scope="row" align="centre">
                         <b>Subjects</b>
                       </TableCell>
-                      <TableCell>For O</TableCell>
-                      <TableCell>For A+</TableCell>
-                      <TableCell>For A</TableCell>
-                      <TableCell>For B+</TableCell>
+                      <TableCell align="centre">
+                        <b>For O</b>
+                      </TableCell>
+                      <TableCell align="centre">
+                        <b>For A+</b>
+                      </TableCell>
+                      <TableCell align="centre">
+                        <b>For A</b>
+                      </TableCell>
+                      <TableCell align="centre">
+                        <b>For B+</b>
+                      </TableCell>
                     </TableRow>
                   </TableHead>
                   <TableBody>
@@ -335,66 +359,447 @@ const Calculator = () => {
                           <hr class="line1"></hr>
                         </TableCell>
                         <TableCell align="centre">
-                          {(90 - selectedCalci.Maths) * 2}
+                          {(90 - selectedCalci.Maths) * 2}+
                           <hr class="line1"></hr>
-                          {(90 - selectedCalci.Mechanical) * 2}
+                          {(90 - selectedCalci.Mechanical) * 2}+
                           <hr class="line1"></hr>
-                          {(90 - selectedCalci.Electronics) * 2}
+                          {(90 - selectedCalci.Electronics) * 2}+
                           <hr class="line1"></hr>
-                          {(90 - selectedCalci.CProgramming) * 2}
+                          {(90 - selectedCalci.CProgramming) * 2}+
                           <hr class="line1"></hr>
-                          {(90 - selectedCalci.Chemistry) * 2}
+                          {(90 - selectedCalci.Chemistry) * 2}+
                           <hr class="line1"></hr>
-                          {90 - selectedCalci.AEC}
-                          <hr class="line1"></hr>
+                          {90 - selectedCalci.AEC}+<hr class="line1"></hr>
                         </TableCell>
                         <TableCell align="centre">
-                          {(80 - selectedCalci.Maths) * 2}
+                          {(80 - selectedCalci.Maths) * 2}+
                           <hr class="line1"></hr>
-                          {(80 - selectedCalci.Mechanical) * 2}
+                          {(80 - selectedCalci.Mechanical) * 2}+
                           <hr class="line1"></hr>
-                          {(80 - selectedCalci.Electronics) * 2}
+                          {(80 - selectedCalci.Electronics) * 2}+
                           <hr class="line1"></hr>
-                          {(80 - selectedCalci.CProgramming) * 2}
+                          {(80 - selectedCalci.CProgramming) * 2}+
                           <hr class="line1"></hr>
-                          {(80 - selectedCalci.Chemistry) * 2}
+                          {(80 - selectedCalci.Chemistry) * 2}+
                           <hr class="line1"></hr>
-                          {80 - selectedCalci.AEC}
-                          <hr class="line1"></hr>
+                          {80 - selectedCalci.AEC}+<hr class="line1"></hr>
                         </TableCell>
                         <TableCell align="centre">
-                          {(70 - selectedCalci.Maths) * 2}
+                          {(70 - selectedCalci.Maths) * 2}+
                           <hr class="line1"></hr>
-                          {(70 - selectedCalci.Mechanical) * 2}
+                          {(70 - selectedCalci.Mechanical) * 2}+
                           <hr class="line1"></hr>
-                          {(70 - selectedCalci.Electronics) * 2}
+                          {(70 - selectedCalci.Electronics) * 2}+
                           <hr class="line1"></hr>
-                          {(70 - selectedCalci.CProgramming) * 2}
+                          {(70 - selectedCalci.CProgramming) * 2}+
                           <hr class="line1"></hr>
-                          {(70 - selectedCalci.Chemistry) * 2}
+                          {(70 - selectedCalci.Chemistry) * 2}+
                           <hr class="line1"></hr>
-                          {70 - selectedCalci.AEC}
-                          <hr class="line1"></hr>
+                          {70 - selectedCalci.AEC}+<hr class="line1"></hr>
                         </TableCell>
                         <TableCell align="centre">
-                          {(60 - selectedCalci.Maths) * 2}
+                          {(60 - selectedCalci.Maths) * 2}+
                           <hr class="line1"></hr>
-                          {(60 - selectedCalci.Mechanical) * 2}
+                          {(60 - selectedCalci.Mechanical) * 2}+
                           <hr class="line1"></hr>
-                          {(60 - selectedCalci.Electronics) * 2}
+                          {(60 - selectedCalci.Electronics) * 2}+
                           <hr class="line1"></hr>
-                          {(60 - selectedCalci.CProgramming) * 2}
+                          {(60 - selectedCalci.CProgramming) * 2}+
                           <hr class="line1"></hr>
-                          {(60 - selectedCalci.Chemistry) * 2}
+                          {(60 - selectedCalci.Chemistry) * 2}+
                           <hr class="line1"></hr>
-                          {60 - selectedCalci.AEC}
-                          <hr class="line1"></hr>
+                          {60 - selectedCalci.AEC}+<hr class="line1"></hr>
                         </TableCell>
                       </TableRow>
                     </>
                   </TableBody>
                 </Table>
               </TableContainer>
+            </div>
+            <div>
+              <Typography>
+                <b>NOTE:</b> From the above table check the grade you will get
+                if you score above that marks in the respective subject.
+              </Typography>
+              <FormControl
+                sx={{
+                  mt: 2,
+                  mb: 4,
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "left",
+                }}
+              >
+                <FormLabel id="demo-row-radio-buttons-group-label">
+                  Grade of Maths
+                </FormLabel>
+                <RadioGroup
+                  row
+                  aria-labelledby="demo-row-radio-buttons-group-label"
+                  name="row-radio-buttons-group"
+                >
+                  <FormControlLabel
+                    value="O"
+                    control={<Radio />}
+                    label="O"
+                    onChange={(e) => {
+                      sc.MathsGrade = e.target.value;
+                    }}
+                  />
+                  <FormControlLabel
+                    value="A+"
+                    control={<Radio />}
+                    label="A+"
+                    onChange={(e) => {
+                      sc.MathsGrade = e.target.value;
+                    }}
+                  />
+                  <FormControlLabel
+                    value="A"
+                    control={<Radio />}
+                    label="A"
+                    onChange={(e) => {
+                      sc.MathsGrade = e.target.value;
+                    }}
+                  />
+                  <FormControlLabel
+                    value="B+"
+                    control={<Radio />}
+                    label="B+"
+                    onChange={(e) => {
+                      sc.MathsGrade = e.target.value;
+                    }}
+                  />
+                </RadioGroup>
+                <FormLabel sx={{}} id="demo-row-radio-buttons-group-label">
+                  Grade of Mechanical
+                </FormLabel>
+                <RadioGroup
+                  row
+                  aria-labelledby="demo-row-radio-buttons-group-label"
+                  name="row-radio-buttons-group"
+                >
+                  <FormControlLabel
+                    value="O"
+                    control={<Radio />}
+                    label="O"
+                    onChange={(e) => {
+                      sc.MechanicalGrade = e.target.value;
+                    }}
+                  />
+                  <FormControlLabel
+                    value="A+"
+                    control={<Radio />}
+                    label="A+"
+                    onChange={(e) => {
+                      sc.MechanicalGrade = e.target.value;
+                    }}
+                  />
+                  <FormControlLabel
+                    value="A"
+                    control={<Radio />}
+                    label="A"
+                    onChange={(e) => {
+                      sc.MechanicalGrade = e.target.value;
+                    }}
+                  />
+                  <FormControlLabel
+                    value="B+"
+                    control={<Radio />}
+                    label="B+"
+                    onChange={(e) => {
+                      sc.MechanicalGrade = e.target.value;
+                    }}
+                  />
+                </RadioGroup>
+                <FormLabel sx={{}} id="demo-row-radio-buttons-group-label">
+                  Grade of Electronics
+                </FormLabel>
+                <RadioGroup
+                  row
+                  aria-labelledby="demo-row-radio-buttons-group-label"
+                  name="row-radio-buttons-group"
+                >
+                  <FormControlLabel
+                    value="O"
+                    control={<Radio />}
+                    label="O"
+                    onChange={(e) => {
+                      sc.ElectronicsGrade = e.target.value;
+                    }}
+                  />
+                  <FormControlLabel
+                    value="A+"
+                    control={<Radio />}
+                    label="A+"
+                    onChange={(e) => {
+                      sc.ElectronicsGrade = e.target.value;
+                    }}
+                  />
+                  <FormControlLabel
+                    value="A"
+                    control={<Radio />}
+                    label="A"
+                    onChange={(e) => {
+                      sc.ElectronicsGrade = e.target.value;
+                    }}
+                  />
+                  <FormControlLabel
+                    value="B+"
+                    control={<Radio />}
+                    label="B+"
+                    onChange={(e) => {
+                      sc.ElectronicsGrade = e.target.value;
+                    }}
+                  />
+                </RadioGroup>
+                <FormLabel sx={{}} id="demo-row-radio-buttons-group-label">
+                  Grade of C Programming
+                </FormLabel>
+                <RadioGroup
+                  row
+                  aria-labelledby="demo-row-radio-buttons-group-label"
+                  name="row-radio-buttons-group"
+                >
+                  <FormControlLabel
+                    value="O"
+                    control={<Radio />}
+                    label="O"
+                    onChange={(e) => {
+                      sc.CProgrammingGrade = e.target.value;
+                    }}
+                  />
+                  <FormControlLabel
+                    value="A+"
+                    control={<Radio />}
+                    label="A+"
+                    onChange={(e) => {
+                      sc.CProgrammingGrade = e.target.value;
+                    }}
+                  />
+                  <FormControlLabel
+                    value="A"
+                    control={<Radio />}
+                    label="A"
+                    onChange={(e) => {
+                      sc.CProgrammingGrade = e.target.value;
+                    }}
+                  />
+                  <FormControlLabel
+                    value="B+"
+                    control={<Radio />}
+                    label="B+"
+                    onChange={(e) => {
+                      sc.CProgrammingGrade = e.target.value;
+                    }}
+                  />
+                </RadioGroup>
+                <FormLabel sx={{}} id="demo-row-radio-buttons-group-label">
+                  Grade of Chemistry
+                </FormLabel>
+                <RadioGroup
+                  row
+                  aria-labelledby="demo-row-radio-buttons-group-label"
+                  name="row-radio-buttons-group"
+                >
+                  <FormControlLabel
+                    value="O"
+                    control={<Radio />}
+                    label="O"
+                    onChange={(e) => {
+                      sc.ChemistryGrade = e.target.value;
+                    }}
+                  />
+                  <FormControlLabel
+                    value="A+"
+                    control={<Radio />}
+                    label="A+"
+                    onChange={(e) => {
+                      sc.ChemistryGrade = e.target.value;
+                    }}
+                  />
+                  <FormControlLabel
+                    value="A"
+                    control={<Radio />}
+                    label="A"
+                    onChange={(e) => {
+                      sc.ChemistryGrade = e.target.value;
+                    }}
+                  />
+                  <FormControlLabel
+                    value="B+"
+                    control={<Radio />}
+                    label="B+"
+                    onChange={(e) => {
+                      sc.ChemistryGrade = e.target.value;
+                    }}
+                  />
+                </RadioGroup>
+                <FormLabel sx={{}} id="demo-row-radio-buttons-group-label">
+                  Grade of AEC
+                </FormLabel>
+                <RadioGroup
+                  row
+                  aria-labelledby="demo-row-radio-buttons-group-label"
+                  name="row-radio-buttons-group"
+                >
+                  <FormControlLabel
+                    value="O"
+                    control={<Radio />}
+                    label="O"
+                    onChange={(e) => {
+                      sc.AECGrade = e.target.value;
+                    }}
+                  />
+                  <FormControlLabel
+                    value="A+"
+                    control={<Radio />}
+                    label="A+"
+                    onChange={(e) => {
+                      sc.AECGrade = e.target.value;
+                    }}
+                  />
+                  <FormControlLabel
+                    value="A"
+                    control={<Radio />}
+                    label="A"
+                    onChange={(e) => {
+                      sc.AECGrade = e.target.value;
+                    }}
+                  />
+                  <FormControlLabel
+                    value="B+"
+                    control={<Radio />}
+                    label="B+"
+                    onChange={(e) => {
+                      sc.AECGrade = e.target.value;
+                    }}
+                  />
+                </RadioGroup>
+                <FormLabel sx={{}} id="demo-row-radio-buttons-group-label">
+                  Grade of C Programming lab
+                </FormLabel>
+                <RadioGroup
+                  row
+                  aria-labelledby="demo-row-radio-buttons-group-label"
+                  name="row-radio-buttons-group"
+                >
+                  <FormControlLabel
+                    value="O"
+                    control={<Radio />}
+                    label="O"
+                    onChange={(e) => {
+                      sc.Cplab = e.target.value;
+                    }}
+                  />
+                  <FormControlLabel
+                    value="A+"
+                    control={<Radio />}
+                    label="A+"
+                    onChange={(e) => {
+                      sc.Cplab = e.target.value;
+                    }}
+                  />
+                  <FormControlLabel
+                    value="A"
+                    control={<Radio />}
+                    label="A"
+                    onChange={(e) => {
+                      sc.Cplab = e.target.value;
+                    }}
+                  />
+                  <FormControlLabel
+                    value="B+"
+                    control={<Radio />}
+                    label="B+"
+                    onChange={(e) => {
+                      sc.Cplab = e.target.value;
+                    }}
+                  />
+                </RadioGroup>
+                <FormLabel sx={{}} id="demo-row-radio-buttons-group-label">
+                  Grade of Chem Lab
+                </FormLabel>
+                <RadioGroup
+                  row
+                  aria-labelledby="demo-row-radio-buttons-group-label"
+                  name="row-radio-buttons-group"
+                >
+                  <FormControlLabel
+                    value="O"
+                    control={<Radio />}
+                    label="O"
+                    onChange={(e) => {
+                      sc.Clab = e.target.value;
+                    }}
+                  />
+                  <FormControlLabel
+                    value="A+"
+                    control={<Radio />}
+                    label="A+"
+                    onChange={(e) => {
+                      sc.Clab = e.target.value;
+                    }}
+                  />
+                  <FormControlLabel
+                    value="A"
+                    control={<Radio />}
+                    label="A"
+                    onChange={(e) => {
+                      sc.Clab = e.target.value;
+                    }}
+                  />
+                  <FormControlLabel
+                    value="B+"
+                    control={<Radio />}
+                    label="B+"
+                    onChange={(e) => {
+                      sc.Clab = e.target.value;
+                    }}
+                  />
+                </RadioGroup>
+                <FormLabel sx={{}} id="demo-row-radio-buttons-group-label">
+                  Grade of Mech Lab
+                </FormLabel>
+                <RadioGroup
+                  row
+                  aria-labelledby="demo-row-radio-buttons-group-label"
+                  name="row-radio-buttons-group"
+                >
+                  <FormControlLabel
+                    value="O"
+                    control={<Radio />}
+                    label="O"
+                    onChange={(e) => {
+                      sc.Mlab = e.target.value;
+                    }}
+                  />
+                  <FormControlLabel
+                    value="A+"
+                    control={<Radio />}
+                    label="A+"
+                    onChange={(e) => {
+                      sc.Mlab = e.target.value;
+                    }}
+                  />
+                  <FormControlLabel
+                    value="A"
+                    control={<Radio />}
+                    label="A"
+                    onChange={(e) => {
+                      sc.Mlab = e.target.value;
+                    }}
+                  />
+                  <FormControlLabel
+                    value="B+"
+                    control={<Radio />}
+                    label="B+"
+                    onChange={(e) => {
+                      sc.Mlab = e.target.value;
+                    }}
+                  />
+                </RadioGroup>
+              </FormControl>
             </div>
             <div>
               {
@@ -454,6 +859,33 @@ const Calculator = () => {
                 : sc.AECGrade === "B+"
                 ? (Acredits = 7)
                 : (Acredits = 0)}
+              {sc.Clab === "O"
+                ? (Clabcredits = 10)
+                : sc.Clab === "A+"
+                ? (Clabcredits = 9)
+                : sc.Clab === "A"
+                ? (Clabcredits = 8)
+                : sc.Clab === "B+"
+                ? (Clabcredits = 7)
+                : (Clabcredits = 10)}
+              {sc.Cplab === "O"
+                ? (Cplabcredits = 10)
+                : sc.Cplab === "A+"
+                ? (Cplabcredits = 9)
+                : sc.Cplab === "A"
+                ? (Cplabcredits = 8)
+                : sc.Cplab === "B+"
+                ? (Cplabcredits = 7)
+                : (Cplabcredits = 10)}
+              {sc.Mlab === "O"
+                ? (Mlabcredits = 10)
+                : sc.Mlab === "A+"
+                ? (Mlabcredits = 9)
+                : sc.Mlab === "A"
+                ? (Mlabcredits = 8)
+                : sc.Mlab === "B+"
+                ? (Mlabcredits = 7)
+                : (Mlabcredits = 10)}
             </div>
             <div>
               {
@@ -464,7 +896,9 @@ const Calculator = () => {
                   Cpcredits * 3 +
                   Ccredits * 3 +
                   Acredits +
-                  30)
+                  Cplabcredits +
+                  Clabcredits +
+                  Mlabcredits)
               }
             </div>
             <div>
@@ -472,12 +906,18 @@ const Calculator = () => {
                 sx={{
                   mt: 2,
                   mb: 2,
-                  fontSize: 20,
-                  fontWeight: "bold",
+                  fontSize: 18,
+                  fontWeight: "semibold",
                 }}
               >
+                As Per the Selected grades of the Subjects,<br></br>
                 <b>Your Expected CGPA is: {Tcredits / 20}</b>
               </Typography>
+              {/* <Typography
+                sx={{ mt: 2, mb: 2, fontSize: 20, fontWeight: "bold" }}
+              >
+                As Per the Selected grades of the Subject
+              </Typography> */}
             </div>
             <div>
               <Typography
@@ -490,7 +930,7 @@ const Calculator = () => {
                 variant="h6"
                 component="div"
               >
-                <b>Note down the expected grade and Update here</b>
+                Alternatively You can Update your Grades here:
               </Typography>
               <Button
                 sx={{
@@ -533,3 +973,18 @@ export default Calculator;
 //       <br></br>
 //     </Article>
 //   ))}
+export const gradepts = (grade) => {
+  calci.map((post, index) => (
+    <Article key={`post-key-${index}`}>
+      <Heading as="h3" content={post.name} />
+      {/* <Text content={post.Timestamp} /> */}
+      <Text lable="Maths: " content={(90 - post.Maths) * 2} />
+      <Text lable="Electronics: " content={(90 - post.Electronics) * 2} />
+      <Text lable="C Programming: " content={post.CProgramming} />
+      <Text lable="Mechanical: " content={post.Mechanical} />
+      <Text lable="Chemistry: " content={post.Chemistry} />
+      <Text lable="AEC: " content={post.AEC} />
+      <br></br>
+    </Article>
+  ));
+};
