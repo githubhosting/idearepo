@@ -78,13 +78,6 @@ class App extends React.Component {
             edit={PostEdit}
           />
           <Resource
-            name="calci"
-            list={calciList}
-            show={Users.calciShow1}
-            create={calciCreate}
-            edit={calciEdit}
-          />
-          <Resource
             name="users"
             icon={UserIcon}
             list={UserList}

@@ -223,11 +223,11 @@ export const PostCreate = (props) => (
           { id: "prototyped", name: "Prototyped" },
         ]}
       />
-      <ArrayInput label="Links" helperText="Provide links if any" source="urls">
+      {/* <ArrayInput label="Links" helperText="Provide links if any" source="urls">
         <SimpleFormIterator>
           <TextInput type="url" source="url" />
         </SimpleFormIterator>
-      </ArrayInput>
+      </ArrayInput> */}
     </SimpleForm>
   </Create>
 );
