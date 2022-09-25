@@ -22,19 +22,15 @@ import {
 import { RichTextInput } from "ra-input-rich-text";
 
 export const CommentsList = (props) => (
-  <List
-    {...props}
-  >
+  <List {...props}>
     <Datagrid>
-      {/* <TextField source="updatedby" /> */}
-      {/* <TextField source="createdby" /> */}
       <RichTextField source="text" />
-      <ReferenceField label="Post" source="post_ref" reference="posts">
+      <ReferenceField label="Post" source="_DOCREF_post_ref" reference="posts">
         <TextField source="title" />
       </ReferenceField>
-      <ShowButton label="" />
-      <EditButton label="" />
-      <DeleteButton label="" redirect={false} />
+      <ShowButton label="Show" />
+      <EditButton label="Edit" />
+      <DeleteButton label="Delete" redirect={false} />
     </Datagrid>
   </List>
 );
@@ -42,11 +38,15 @@ export const CommentsList = (props) => (
 export const CommentShow = (props) => (
   <Show {...props}>
     <SimpleShowLayout>
-      <TextField source="id" />
-      <TextField source="createdate" />
-      <TextField source="lastupdate" />
+      {/* <TextField source="id" /> */}
+      {/* <TextField source="createdate" /> */}
+      {/* <TextField source="lastupdate" /> */}
       <RichTextField source="text" />
-      <ReferenceField label="Post" source="post_ref" reference="posts">
+      <ReferenceField
+        label="Idea Title"
+        source="_DOCREF_post_ref"
+        reference="posts"
+      >
         <TextField source="title" />
       </ReferenceField>
     </SimpleShowLayout>
@@ -54,7 +54,7 @@ export const CommentShow = (props) => (
 );
 
 export const CommentCreate = (props) => (
-  <Create {...props}>
+  <Create {...props} redirect="show">
     <SimpleForm>
       <RichTextInput source="text" />
       <ReferenceInput
@@ -63,7 +63,7 @@ export const CommentCreate = (props) => (
         reference="posts"
         // filter={{ isAdmin: true }}
       >
-        <SelectInput label="User" optionText="title" />
+        <SelectInput label="Idea Title" optionText="title" />
       </ReferenceInput>
     </SimpleForm>
   </Create>
@@ -75,11 +75,11 @@ export const CommentEdit = (props) => (
       <RichTextInput source="text" />
       <ReferenceInput
         label="Post"
-        source="post_ref"
+        source="_DOCREF_post_ref"
         reference="posts"
         // filter={{ isAdmin: true }}
       >
-        <SelectInput label="User" optionText="title" />
+        <SelectInput label="Idea Title" optionText="title" />
       </ReferenceInput>
     </SimpleForm>
   </Edit>

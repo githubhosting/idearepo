@@ -973,18 +973,3 @@ export default Calculator;
 //       <br></br>
 //     </Article>
 //   ))}
-export const gradepts = (grade) => {
-  calci.map((post, index) => (
-    <Article key={`post-key-${index}`}>
-      <Heading as="h3" content={post.name} />
-      {/* <Text content={post.Timestamp} /> */}
-      <Text lable="Maths: " content={(90 - post.Maths) * 2} />
-      <Text lable="Electronics: " content={(90 - post.Electronics) * 2} />
-      <Text lable="C Programming: " content={post.CProgramming} />
-      <Text lable="Mechanical: " content={post.Mechanical} />
-      <Text lable="Chemistry: " content={post.Chemistry} />
-      <Text lable="AEC: " content={post.AEC} />
-      <br></br>
-    </Article>
-  ));
-};
